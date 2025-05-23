@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Correios Brasil - Pagamento PIX</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-blue-50 text-gray-800">
+  <header class="bg-yellow-400 p-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-blue-900">Correios Brasil</h1>
+    </div>
+  </header>
+
+  <main class="container mx-auto p-6">
+    <section class="bg-white rounded-xl shadow-md p-6 mt-6">
+      <h2 class="text-xl font-semibold text-blue-800 mb-4">Serviços de Entrega Rápida e Segura</h2>
+      <p class="mb-4">
+        Oferecemos soluções de entrega para todo o Brasil com agilidade, segurança e rastreamento em tempo real.
+        Envie encomendas com tranquilidade através dos nossos serviços confiáveis.
+      </p>
+      <p class="mb-4">
+        Nosso compromisso é garantir que seu produto chegue ao destino com pontualidade. Escolha a qualidade dos Correios Brasil.
+      </p>
+    </section>
+
+    <section class="bg-white rounded-xl shadow-md p-6 mt-6 text-center">
+      <h3 class="text-lg font-medium mb-2">Valor da Entrega</h3>
+      <p class="text-2xl font-bold text-green-600 mb-4">R$ 30,00</p>
+
+      <textarea id="pixCode" readonly class="w-full p-3 mb-4 rounded border border-gray-300 text-gray-700" rows="3" style="font-family: monospace; font-size: 14px;">
+00020101021126580014br.gov.bcb.pix01362fc8fd02-fa45-4ff3-80a4-1c2f3439231b520400005303986540530.005802BR5907LIVEPIX6009SAO PAULO622805246830ca52c8300eda430fc1db6304B75F
+      </textarea>
+
+      <button id="pixButton" onclick="copyPix()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg shadow transition">
+        Pagar Entrega
+      </button>
+    </section>
+  </main>
+
+  <footer class="bg-yellow-400 text-blue-900 text-center py-4 mt-10">
+    © 2025 Correios Brasil. Todos os direitos reservados.
+  </footer>
+
+  <script>
+    function copyPix() {
+      const pixCode = document.getElementById('pixCode');
+      const button = document.getElementById('pixButton');
+
+      pixCode.select();
+      pixCode.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(pixCode.value).then(() => {
+        button.textContent = 'PIX copiado!';
+        button.classList.remove('bg-blue-600');
+        button.classList.add('bg-green-600');
+
+        setTimeout(() => {
+          button.textContent = 'Pagar Entrega';
+          button.classList.remove('bg-green-600');
+          button.classList.add('bg-blue-600');
+        }, 3000);
+      });
+    }
+  </script>
+</body>
+</html>
